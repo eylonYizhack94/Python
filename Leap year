@@ -1,0 +1,14 @@
+year = int(input('year: '))
+by4 = year%4 ==0
+by100 = year%100 ==0
+by400 = year%400 ==0
+leap = 'its a leap year'
+noLeap = 'its not a leap year'
+
+if by4 and not by100:
+  print(f'{year}/4 = {year/4} , {year}/100 = {year/100}')
+  print(leap)
+elif by4 and by100 and by400:
+  print(leap)
+else:
+  print(noLeap)
