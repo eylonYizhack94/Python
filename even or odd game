@@ -1,0 +1,26 @@
+play = True
+counter = 0
+while play:
+  number = input('Enter a numer: ')
+  if number.isalpha:
+    if number == 'stop':
+      exit = input('Do you want to exit the game? press Y/N : ')
+      if exit == 'Y':
+        print('Good bye!')
+        play = False
+      elif exit == 'N':
+        continue
+      else:
+        print('Not valid answer!')
+    else:
+      print('Its not a number!')
+      if counter >= 2:
+       print('press stop to exit!')
+        
+     
+  elif int(number) % 2 == 0:
+    print('Its even number')    
+  else:
+    print('Its an odd number')
+  counter += 1
+
