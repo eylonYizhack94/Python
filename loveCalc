@@ -1,0 +1,19 @@
+name = input("your name: ") + input('your loves name: ').lower()
+[true, love] = ['true', 'love']
+counterTrue = 0
+counterLove = 0
+#
+for letter in true:
+  counterTrue += name.count(letter)
+for letter in love:
+  counterLove += name.count(letter)
+#_________________________________________________
+score = int(str(counterTrue)+str(counterLove))
+if score <10 or score > 90:
+  message = f'Your score is {score}, you go together like coke and mentos.'
+elif 40 < score < 50 :
+  message = f'Your score is {score}, you are alright together.'
+else:
+  message = f'Your score is {score}.'
+#_________________________________________________
+print(message)
