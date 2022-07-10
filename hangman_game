@@ -1,0 +1,41 @@
+ Hangman game
+import random as rand
+import re
+import os
+
+clear = lambda: os.system('cls')
+clear()
+
+def indices(char, string):
+    indices_in_string = [i.start() for i in re.finditer(char, string)]
+    return indices_in_string
+
+def show_errors(errorCounter):
+    errors = 'x' * 6
+    if errorCounter != 0:
+        print(errors[0:errorCounter])
+
+words = ['baboon', 'game', 'hose', 'camel', 'printing', 'bomb']
+word = rand.choice(words)
+errorCounter = 0
+lines = ['__ '] * len(word)
+
+while errorCounter < 6:
+    print(word)
+    guess = input('Choose a letter: ').lower()
+    num_of_times = word.count(guess)
+    if word.__contains__(guess):
+        indices_of_letter = indices(guess, word)
+        for i in range(0, len(indices_of_letter)):
+            lines[indices_of_letter[i]] = guess
+        print(lines)
+        if not lines.__contains__('__ '):
+            print('You win!')
+            break
+    else:
+        errorCounter += 1
+    show_errors(errorCounter)
+    print(errorCounter)
+
+if errorCounter == 6:
+    print(f'You lost the game! \n the word was: {word} ')
