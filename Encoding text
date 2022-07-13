@@ -1,0 +1,49 @@
+import string
+
+
+def encoding(sequence, num):
+    alphabet = string.ascii_lowercase
+    new_sequence_list = []
+    for letter in sequence:
+        index = alphabet.find(letter) + num
+        if index <= len(alphabet):
+            value = alphabet[index]
+            if letter == ' ':
+                new_sequence_list.append(' ')
+            elif letter < 'a':
+                new_sequence_list.append(letter)
+            else:
+                new_sequence_list.append(value)
+        else:
+            diff = index - len(alphabet)
+            new_sequence_list.append(alphabet[diff])
+    new_sequence = ''.join(new_sequence_list)
+    return new_sequence
+
+
+def decipher(sequence, num):
+    alphabet = string.ascii_lowercase
+    new_sequence_list = []
+    for letter in sequence:
+        if letter == ' ':
+            new_sequence_list.append(' ')
+        elif letter < 'a':
+            new_sequence_list.append(letter)
+        else:
+            if alphabet.find(letter) >= num:
+                index = alphabet.find(letter) - num
+                value = alphabet[index]
+                new_sequence_list.append(value)
+            else:
+                diff = alphabet.find(letter) - num
+                new_sequence_list.append(alphabet[diff])
+    new_sequence = ''.join(new_sequence_list)
+    return new_sequence
+
+
+txt = input('Enter text here: ')
+txt_encoded = encoding(txt.lower(), 3)
+print(f'Text after encoding: {txt_encoded}')
+key = int(input('Enter Encryption key: '))
+deciphered_text = decipher(txt_encoded, key)
+print(f'Text after decoding: {deciphered_text} ')
