@@ -1,0 +1,25 @@
+import string
+
+
+def caesar(input_text, shift_amount, direction):
+    alphabet = string.ascii_lowercase
+    output_text = ''
+    if direction == 'in':
+        shift_amount *= -1
+    for letter in input_text:
+        position = alphabet.index(letter)
+        position_after_shift = position + shift_amount
+        rest = position_after_shift % 26
+        output_text += alphabet[rest]
+    print(output_text)
+
+
+while True:
+    text = input('enter text: ')
+    if text == 'exit':
+        print('bye bye!')
+        break
+    shift = int(input('enter shift: '))
+    direction = input('enter direction (in/out): ')
+    caesar(text, shift, direction)
+
