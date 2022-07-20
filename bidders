@@ -1,0 +1,26 @@
+
+def find_the_highest(your_dictionary):
+    highest = 0
+    winner = ''
+    for name in your_dictionary:
+        bid_value = your_dictionary[name]
+        if bid_value >= highest:
+            highest = bid_value
+            winner = name
+    print(f'the winner is: {winner} with bid of: {highest}')
+
+
+bids = {}
+finish = False
+while not finish:
+    name = input('your name: ')
+    bid = int(input('your bid: '))
+    bids[name] = bid
+    answer = input('there are any other? ').lower()
+    if answer == 'no':
+        clear()
+        print(bids)
+        find_the_highest(bids)
+        finish = True
+    else:
+        clear()
