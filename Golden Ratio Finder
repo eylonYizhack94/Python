@@ -1,0 +1,25 @@
+def golden_ratio1(num_of_cycles):
+    def fibo(n):
+        return 1 + 1 / n
+
+    temp = fibo(1)
+    for n in range(0, num_of_cycles):
+        temp = fibo(temp)
+    return temp
+
+
+def fibonacci(index):
+    fibo_list = [1, 1]
+    for n in range(2, index):
+        fibo_list.append(fibo_list[n - 2] + fibo_list[n - 1])
+    return fibo_list
+
+
+def golden_ratio2(n):
+    fibolist = fibonacci(n)
+    fi = fibolist[n - 1] / fibolist[n - 2]
+    return fi
+
+
+print(golden_ratio1(100))
+print(golden_ratio2(100))
