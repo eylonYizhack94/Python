@@ -1,0 +1,36 @@
+# Calculator
+import os
+import sys
+
+
+def multiply(n1, n2):
+    return n1*n2
+
+
+def divide(n1, n2):
+    return n1/n2
+
+
+def add(n1, n2):
+    return n1 + n2
+
+
+def subtract(n1, n2):
+    return n1 - n2
+
+operations = {
+    '+': add,
+    '-': subtract,
+    '*': multiply,
+    '/': divide
+}
+
+instructions = 'Write a number and than an operation and continue'
+num1 = int(input('number: '))
+while True:
+    operation = input('operation: ')
+    num2 = int(input('number: '))
+    calc_function = operations[operation]
+    result = calc_function(num1, num2)
+    print(f'{num1} {operation} {num2} = {round(result,2)}')
+    num1 = result
