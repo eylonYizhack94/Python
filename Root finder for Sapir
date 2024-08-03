@@ -1,0 +1,58 @@
+#___________Find the root value of an equation__________
+
+def newton_raphson(f, df, x0, tolerance=1e-7, max_iterations=1000):
+    x = x0
+    for i in range(max_iterations):
+        fx = f(x)
+        dfx = df(x)
+        if abs(fx) < tolerance:
+            return x
+        if dfx == 0:
+            raise ValueError("The derivative is zero. No solution found.")
+        x = x - fx / dfx
+    raise ValueError("Maximum number of iterations reached.")
+
+#______________________________________________________________
+def bisection_method(f, a, b, tolerance=1e-7, max_iterations=1000):
+    if f(a) * f(b) >= 0:
+        raise ValueError("The function must change signs over the interval [a,b].")
+    for i in range(max_iterations):
+        c = (a + b) / 2
+        if f(c) == 0 or (b - a) / 2 < tolerance:
+            return c
+        if f(c) * f(a) < 0:
+            b = c
+        else:
+            a = c
+    raise ValueError("Maximum number of iterations reached")
+
+#______________________________________________________________
+def secant_method(f, x0, x1, tol=1e-7, max_iter=100):
+    for i in range(max_iter):
+        if abs(f(x1)) < tol:
+            print(f"Converged in {i + 1} iterations.")
+            return x1
+        if f(x1) - f(x0) == 0:
+            print("Division by zero encountered. Stopping iteration.")
+            return None
+        x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
+        x0, x1 = x1, x2
+    print("Maximum number of iterations reached.")
+    return x1
+
+
+# ____define the equation and its derivative_______
+def f(x):  # x^2-x-1=0
+    return x ** 2 - x - 1
+def df(x):  # The derivative of the function
+    return 2 * x
+
+# _____________Find the root of the function_____________
+root_NR = newton_raphson(f, df, x0=1.0)
+root_BSM = bisection_method(f, a=0, b=2)
+root_SCM = secant_method(f, x0=1, x1=3)
+
+# _____________Printing the results_____________
+print(f"The root by using NR method is: {root_NR:.8f}")
+print(f"The root by using BSM method is: {root_BSM:.8f}")
+print(f"The root by using BSM method is: {root_SCM:.8f}")
